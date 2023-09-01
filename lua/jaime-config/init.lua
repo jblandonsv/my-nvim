@@ -8,5 +8,6 @@ require("jaime-config.telescope")
 
 require("jaime-config.python-config")
 require("jaime-config.rust-tools")
+require("jaime-config.lualine")
 
 require("dap-python").setup("/Users/jaime/debug/bin/python")
