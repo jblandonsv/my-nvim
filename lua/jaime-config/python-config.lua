@@ -3,14 +3,14 @@ require('lspconfig').pylsp.setup {
     -- configure plugins in pylsp
     pylsp = {
       plugins = {
-        flake8 = {enabled = true},
+        ruff = {enabled = false},
+        flake8 = {enabled = false},
         pyflakes = {enabled = false},
         pylint = {enabled = false},
         autopep8 = {enabled = false},
         mccabe = {enabled = false},
         pycodestyle = {enabled = false},
-        yapf = {enabled = false},
-        ruff = {enabled = false}
+        yapf = {enabled = false}
       },
     },
   },
