@@ -19,6 +19,9 @@ return {
                 graphql = { "prettier" },
                 lua = { "stylua" },
                 apex = { "prettier" },
+                cls = { "prettier" },
+                st = { "prettier" },
+                java = { "prettier" },
                 python = { "isort", "ruff_format" }, -- install with Mason ruff, isort, and ruff-lsp
             },
             format_on_save = {
