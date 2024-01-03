@@ -13,5 +13,6 @@ require("jaime-config.lualine")
 require("jaime-config.crates")
 
 require("jaime-config.apex-config")
+require("jaime-config.aerial")
 
 require("dap-python").setup("/Users/jaime/debug/bin/python")
