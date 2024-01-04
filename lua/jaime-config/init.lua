@@ -11,7 +11,6 @@ require("jaime-config.python-config")
 require("jaime-config.rust-tools")
 require("jaime-config.lualine")
 require("jaime-config.crates")
-require("jaime-config.symbols-outline")
 
 require("jaime-config.apex-config")
 
