@@ -7,8 +7,7 @@ require("jaime-config.theme")
 require("jaime-config.telescope")
 
 require("jaime-config.python-config")
--- require("jaime-config.python-ruff-config")
-require("jaime-config.rust-tools")
+require("jaime-config.rustaceanvim")
 require("jaime-config.lualine")
 require("jaime-config.crates")
 
