@@ -10,6 +10,7 @@ require("jaime-config.python-config")
 require("jaime-config.rustaceanvim")
 require("jaime-config.lualine")
 require("jaime-config.crates")
+require("jaime-config.diagnostics")
 
 require("jaime-config.apex-config")
 require("jaime-config.aerial")
