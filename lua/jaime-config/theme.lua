@@ -44,3 +44,5 @@ require("catppuccin").setup({
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "moonlight2"
+-- vim.cmd.colorscheme "gruvbox"
