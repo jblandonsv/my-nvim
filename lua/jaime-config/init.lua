@@ -16,3 +16,4 @@ require("jaime-config.apex-config")
 require("jaime-config.aerial")
 
 require("dap-python").setup("/Users/jaime/debug/bin/python")
+require("toggleterm").setup {}
