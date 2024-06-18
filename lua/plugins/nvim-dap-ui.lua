@@ -1,6 +1,9 @@
 return {
     "rcarriga/nvim-dap-ui",
-    dependencies = "mfussenegger/nvim-dap",
+    -- es probable que se necesite dar permisos de lectura, escritura y ejecucion a ~/.local/state/nvim/nio.log
+    -- tambien es probable que se tenga que borrar el cache de nvim ~/.cache/nvim
+    -- y dar permisos de ejecucion a ~/.local/share/nvim/nvim-nio (todo el folder)
+    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
