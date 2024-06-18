@@ -21,3 +21,4 @@ require("jaime-config.startup")
 
 require("dap-python").setup("/Users/jaime/debug/bin/python")
 require("toggleterm").setup({})
+require("jaime-config.nvim-dap-js")
