@@ -4,7 +4,7 @@ require("lspconfig").pylsp.setup({
 		pylsp = {
 			plugins = {
 				ruff = { enabled = false },
-				flake8 = { enabled = false },
+				flake8 = { enabled = true },
 				pyflakes = { enabled = false },
 				pylint = { enabled = false },
 				autopep8 = { enabled = false },

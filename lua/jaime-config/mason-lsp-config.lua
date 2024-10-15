@@ -15,7 +15,7 @@ require("mason-lspconfig").setup({
 		"html",
 		"lwc_ls",
 		"spectral",
-		"ruff_lsp",
+		-- "ruff_lsp",
 		"pylsp",
 		"volar",
 		"lemminx",
