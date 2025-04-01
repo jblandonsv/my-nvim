@@ -47,6 +47,12 @@ return {
 				if bufname:match("^/Users/jaime/projects/Glewee/payment%-service/") then
 					return
 				end
+				if bufname:match("^/Users/jaime/projects/Glewee/theglew%-social%-api%-integration/") then
+					return
+				end
+				if bufname:match("^/Users/jaime/projects/Glewee/glewiq/") then
+					return
+				end
 				return {
 					lsp_fallback = true,
 					async = false,

@@ -1,0 +1,1 @@
+require("lspconfig").solidity.setup({})
