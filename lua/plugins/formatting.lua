@@ -22,7 +22,7 @@ return {
 				st = { "prettier" },
 				java = { "prettier" },
 				python = { "isort", "black" }, -- install with Mason ruff, isort, and ruff-lsp
-				graphql = { "prettier" },
+				graphql = { "prettierd" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable autoformat on certain filetypes
