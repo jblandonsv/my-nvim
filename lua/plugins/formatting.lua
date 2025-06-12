@@ -41,7 +41,7 @@ return {
 				if bufname:match("^/Users/jaime/projects/Glewee/glewee%-py/") then
 					return
 				end
-				if bufname:match("^/Users/jaime/projects/Glewee/backend/theglew%-backend/") then
+				if bufname:match("^/Users/jaime/projects/Glewee/theglew%-backend/") then
 					return
 				end
 				if bufname:match("^/Users/jaime/projects/Glewee/payment%-service/") then
