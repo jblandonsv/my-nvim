@@ -37,22 +37,24 @@ return {
 				--	return
 				-- end
 				-- Disable autoformat for files in a certain path
+
+				-- temporary disable this since one person army
 				local bufname = vim.api.nvim_buf_get_name(bufnr)
-				if bufname:match("^/Users/jaime/projects/Glewee/glewee%-py/") then
-					return
-				end
-				if bufname:match("^/Users/jaime/projects/Glewee/theglew%-backend/") then
-					return
-				end
-				if bufname:match("^/Users/jaime/projects/Glewee/payment%-service/") then
-					return
-				end
-				if bufname:match("^/Users/jaime/projects/Glewee/theglew%-social%-api%-integration/") then
-					return
-				end
-				if bufname:match("^/Users/jaime/projects/Glewee/glewiq/") then
-					return
-				end
+				-- if bufname:match("^/Users/jaime/projects/Glewee/glewee%-py/") then
+				-- 	return
+				-- end
+				-- if bufname:match("^/Users/jaime/projects/Glewee/theglew%-backend/") then
+				-- 	return
+				-- end
+				-- if bufname:match("^/Users/jaime/projects/Glewee/payment%-service/") then
+				-- 	return
+				-- end
+				-- if bufname:match("^/Users/jaime/projects/Glewee/theglew%-social%-api%-integration/") then
+				-- 	return
+				-- end
+				-- if bufname:match("^/Users/jaime/projects/Glewee/glewiq/") then
+				-- 	return
+				-- end
 				return {
 					lsp_fallback = true,
 					async = false,
