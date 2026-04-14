@@ -84,4 +84,13 @@ require("onedark").setup({
 })
 
 -- setup must be called before loading
+require("night-owl").setup({
+	bold = true,
+	italics = true,
+	underline = true,
+	undercurl = true,
+	transparent_background = false,
+})
 vim.cmd.colorscheme("night-owl")
+-- vim.cmd.colorscheme("eva01-LCL")
+-- vim.cmd.colorscheme("lunaperche")

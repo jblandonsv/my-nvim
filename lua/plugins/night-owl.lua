@@ -1,5 +1,5 @@
 return {
-	"oxfist/night-owl.nvim",
+	"haishanh/night-owl.nvim",
 	lazy = false,
 	priority = 100,
 }

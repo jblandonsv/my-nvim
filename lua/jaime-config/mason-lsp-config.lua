@@ -1,3 +1,7 @@
+-- mason-lsp-config configuration
+-- Automatically installs and manages LSP servers for various languages and frameworks
+-- Servers listed here will be installed automatically if not present
+
 require("mason-lspconfig").setup({
 	-- rust es manejado por el plugin rustacean
 	ensure_installed = {
@@ -5,7 +9,7 @@ require("mason-lspconfig").setup({
 		"apex_ls",
 		"cssls",
 		"vuels",
-		-- "tsserver",
+		-- "tsserver", -- replaced by ts_ls
 		"ts_ls",
 		"terraformls",
 		"tflint",
@@ -14,12 +18,12 @@ require("mason-lspconfig").setup({
 		"eslint",
 		"emmet_ls",
 		"html",
-		"lwc_ls",
-		"spectral",
-		-- "ruff_lsp",
+		"lwc_ls", -- Salesforce Lightning Web Components
+		"spectral", -- OpenAPI linter
+		-- "ruff_lsp", -- replaced by pylsp
 		"pylsp",
-		"volar",
-		"lemminx",
+		"volar", -- Vue.js
+		"lemminx", -- XML
 		"yamlls",
 	},
 })
