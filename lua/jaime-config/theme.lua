@@ -91,6 +91,6 @@ require("night-owl").setup({
 	undercurl = true,
 	transparent_background = false,
 })
-vim.cmd.colorscheme("night-owl")
+vim.cmd.colorscheme("littleprince")
 -- vim.cmd.colorscheme("eva01-LCL")
 -- vim.cmd.colorscheme("lunaperche")

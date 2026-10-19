@@ -1,6 +1,5 @@
-require("lspconfig").pylsp.setup({
+vim.lsp.config("pylsp", {
 	settings = {
-		-- configure plugins in pylsp
 		pylsp = {
 			plugins = {
 				ruff = { enabled = false },
@@ -15,3 +14,4 @@ require("lspconfig").pylsp.setup({
 		},
 	},
 })
+vim.lsp.enable("pylsp")

@@ -1,0 +1,112 @@
+-- =============================================================================
+-- ⚠️  PLUGIN DESACTIVADO — por el momento estamos usando sudo-tee/opencode.nvim
+-- Ver:  ~/.config/nvim/lua/plugins/opencode.lua
+-- Razones:
+--   1. OpenCode CLI v2 rompió la API del servidor.
+--   2. El flujo de :diffpatch en tab nuevo ya no muestra la respuesta al lado
+--      del código cuando se trabaja con varias tabs.
+--   3. sudo-tee expone un panel de chat nativo en el split derecho, con
+--      context bar visible y review inline de los diffs del agente.
+--
+-- Para reactivar este plugin (volver a nickjvandyke/opencode.nvim):
+--   1. mv  ~/.config/nvim/lua/plugins/opencode.lua.disabled  \
+--         ~/.config/nvim/lua/plugins/opencode.lua
+--   2. Mover o renombrar el spec de sudo-tee fuera de `lua/plugins/`.
+--   3. :Lazy restore    (restaura el commit pinned en lazy-lock.json)
+-- =============================================================================
+
+-- Código original preservado tal cual por si queremos volver.
+return {
+	"NickvanDyke/opencode.nvim",
+	dependencies = {
+		{ "folke/snacks.nvim", opts = { input = { enabled = true }, picker = { enabled = true }, terminal = { enabled = true } } },
+	},
+	config = function()
+		local opencode_cmd = "opencode"
+		local opencode_term_opts = {
+			win = {
+				position = "right",
+				enter = false,
+			},
+		}
+
+		-- OpenCode v2's daemon writes its URL + password to `service.json`
+		-- whenever it (re)starts. We mirror the plugin's own resolution rules
+		-- (`$XDG_STATE_HOME/opencode/service.json` first, then
+		-- `$HOME/.local/state/opencode/service.json`) so reading the file
+		-- stays in sync across restarts instead of pinning stale values.
+		local function resolve_running_service()
+			local state_home = vim.env.XDG_STATE_HOME
+			local home = vim.uv.os_homedir() or vim.env.HOME or ""
+			local state_dir = (state_home and state_home ~= "")
+				and vim.fs.joinpath(state_home, "opencode")
+				or vim.fs.joinpath(home, ".local", "state", "opencode")
+			local path = vim.fs.joinpath(state_dir, "service.json")
+			local ok, lines = pcall(vim.fn.readfile, path)
+			if not ok or not lines or #lines == 0 then
+				return nil
+			end
+			local decoded_ok, decoded = pcall(vim.fn.json_decode, table.concat(lines, "\n"))
+			if not decoded_ok or type(decoded) ~= "table" or type(decoded.url) ~= "string" then
+				return nil
+			end
+			return decoded
+		end
+
+		vim.g.opencode_opts = {
+			server = {
+				-- When the daemon is already up, talk to it directly
+				-- so `<C-.>` attaches instead of spawning a new child
+				-- server, and the response from `<C-a>` flows through
+				-- whichever TUI is currently bound to that service.
+				url = function(callback)
+					local svc = resolve_running_service()
+					if not svc then
+						return callback(nil)
+					end
+					-- Mirror the password into opencode.nvim's cached config
+					-- so `Server.new` authenticates correctly. Mutating the
+					-- cached `opts.server` table is safe because Server.new
+					-- reads from it on every call.
+					local cfg_ok, cfg = pcall(require, "opencode.config")
+					if cfg_ok and cfg.opts and cfg.opts.server and svc.password then
+						cfg.opts.server.password = svc.password
+					end
+					callback(svc.url)
+				end,
+				start = function()
+					require("snacks.terminal").open(opencode_cmd, opencode_term_opts)
+				end,
+			},
+		}
+
+		vim.o.autoread = true
+
+		vim.keymap.set({ "n", "x" }, "<C-a>", function()
+			require("opencode").ask("@this: ")
+		end, { desc = "Ask opencode…" })
+		vim.keymap.set({ "n", "x" }, "<C-x>", function()
+			require("opencode").select()
+		end, { desc = "Execute opencode action…" })
+		vim.keymap.set({ "n", "t" }, "<C-.>", function()
+			require("snacks.terminal").toggle(opencode_cmd, opencode_term_opts)
+		end, { desc = "Toggle opencode" })
+
+		vim.keymap.set({ "n", "x" }, "go", function()
+			return require("opencode").operator("@this ")
+		end, { desc = "Add range to opencode", expr = true })
+		vim.keymap.set("n", "goo", function()
+			return require("opencode").operator("@this ") .. "_"
+		end, { desc = "Add line to opencode", expr = true })
+
+		vim.keymap.set("n", "<S-C-u>", function()
+			require("opencode").command("session.half.page.up")
+		end, { desc = "Scroll opencode up" })
+		vim.keymap.set("n", "<S-C-d>", function()
+			require("opencode").command("session.half.page.down")
+		end, { desc = "Scroll opencode down" })
+
+		vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+		vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+	end,
+}

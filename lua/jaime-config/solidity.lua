@@ -1,1 +1,2 @@
-require("lspconfig").solidity.setup({})
+vim.lsp.config("solidity", {})
+vim.lsp.enable("solidity")

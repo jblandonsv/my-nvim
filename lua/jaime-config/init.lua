@@ -28,3 +28,5 @@ require("jaime-config.nvim-dap-js")
 require("jaime-config.solidity")
 require("jaime-config.lsp_info")
 require("jaime-config.godot")
+
+require("jaime-config.autocmds")
